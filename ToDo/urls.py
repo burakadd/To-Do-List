@@ -1,8 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 
-from ToDo.models import Todo
 from ToDo.views import MainPage
-from . import views
 
 urlpatterns = [
     path('', MainPage.as_view(
@@ -10,6 +8,4 @@ urlpatterns = [
         success_url="/",
     ),
          name='index',),
-    # path('addToDo', views.addToDo, name='addToDo'),
-
 ]
