@@ -1,0 +1,20 @@
+{% extends 'ToDo/base.html' %}
+{% block content %}
+    <form method="post" class="register-form">
+      {% csrf_token %}
+      <div class="form-group">
+          <h1>Register</h1>
+        <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <span data-placeholder="Username"></span>
+      </div>
+      <div class="form-group">
+        <input name="password1" type="password" class="form-control" id="exampleInputPassword1">
+          <span data-placeholder="Password"></span>
+      </div>
+        <div class="form-group">
+        <input name="password2" type="password" class="form-control" id="exampleInputPassword2">
+        <span data-placeholder="Confirm Password"></span>
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+{% endblock content %}

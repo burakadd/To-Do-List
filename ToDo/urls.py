@@ -1,11 +1,8 @@
 from django.urls import path
 
-from ToDo.views import MainPage
+from ToDo.views import MainView, RegisterView
 
 urlpatterns = [
-    path('', MainPage.as_view(
-        template_name='ToDo/index.html',
-        success_url="/",
-    ),
-         name='index',),
+    path('', MainView.as_view(), name='index', ),
+    path('signup', RegisterView.as_view(), name='register'),
 ]
