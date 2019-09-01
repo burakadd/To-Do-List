@@ -1,15 +1,11 @@
-from django.views.generic import FormView
+from django.views.generic import CreateView
 
 from .models import Todo
 from .forms import TodoForm
 
 
-class MainPage(FormView):
+class MainPage(CreateView):
     form_class = TodoForm
-
-    def form_valid(self, form):
-        form.save()
-        return super(MainPage, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         return {

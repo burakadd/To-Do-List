@@ -1,87 +1,58 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>ToDo App</title>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
 
-		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <div class="container">
+        <input type="text" class="txtb" placeholder="Add your task">
+        <div class="notcomp">
+            <h3>Not Completed</h3>
+        </div>
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="{% static 'ToDo/styles.css' %}" />
-		<link rel="stylesheet" href="{% static 'ToDo/bs/css/flatly.min.css' %}" />
+        <div class="comp">
+            <h3>Completed</h3>
+        </div>
+    </div>
 
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
 
-		<div class="container-fluid" id="wrapper">
 
-			<div class="row">
-				<div class="col-lg-4 col-lg-offset-4" id="content">
-					<h2>WHAT DO YOU WANT TO DO TODAY?</h2>
 
-					<form method="POST" role="form">
-                        {% csrf_token %}
-{#						<div class="form-group">#}
-{#							<div class="input-group">#}
-{#                              {{ form.text }}#}
-{#							  <span class="input-group-btn">#}
-{#								  <button type="submit" class="btn btn-default" id="add-btn">ADD</button>#}
-{#							  </span>#}
-{#							</div>#}
-{#						</div>#}
-                    {{ form }}
-                        <button type="submit" class="btn btn-default" id="add-btn">ADD</button>
-					</form>
-					<div class="row t10">
-						<div class="col-lg-12">
-							<div class="btn-toolbar">
-								<div class="btn-group">
-									<button type="button" class="btn btn-warning">
-										<i class="glyphicon glyphicon-trash"></i> DELETE COMPLETED
-									</button>
-								</div>
-								<div class="btn-group">
-									<button type="button" class="btn btn-warning">
-										<i class="glyphicon glyphicon-trash"></i> DELETE ALL
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
+    <script type="text/javascript">
+        $(".txtb").on("keyup", function(e){
+            if(e.keyCode == 13 && $(".txtb").val() != "")
+            {
+                var task = $("<div class='task'</div>").text($(".txtb").val())
+                var del = $("<i class='fas fa-trash-alt'></i>").click(function(){
+                    var p = $(this).parent();
+                    p.fadeOut(function(){
+                        p.remove();
+                    });
+                });
 
-					<ul class="list-group t20">
-                        {% for todo in todo_list %}
-                            {% if todo.complete %}
-                            <li class="todo-completed">{{ todo.text }}</li>
-                            {% else %}
-                           <li class="todo-not-completed">{{ todo.text }}</li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-				</div>
-			</div>
+                var check = $("<i class='fas fa-check'></i>").click(function(){
+                    var p = $(this).parent();
+                    p.fadeOut(function() {
+                        $(".comp").append(p);
+                        p.fadeIn();
+                    });
+                    $(this).remove();
+                })
 
-			<footer>
-				<div class="row pad">
-					<div class="col-lg-12 text-center">
-						Copyright &copy; 2017 <strong>ToDo App</strong>
-					</div>
-				</div>
-			</footer>
-		</div>
+                task.append(del, check)
+                $(".notcomp").append(task);
 
-		<!-- jQuery -->
-		<script src="./bs/js/jquery.min.js"></script>
-		<!-- Bootstrap JavaScript -->
-		<script src="./bs/js/bootstrap.min.js"></script>
-	</body>
+                $(".txtb").val("")
+
+            }
+        });
+    </script>
+
+</body>
 </html>

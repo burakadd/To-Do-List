@@ -5147,7 +5147,7 @@ S2.define('select2/core',[
     var WIDTH = /^width:(([-+]?([0-9]*\.)?[0-9]+)(px|em|ex|%|in|cm|mm|pt|pc))/i;
 
     if (method == 'resolve') {
-      var styleWidth = this._resolveWidth($element, 'style');
+      var styleWidth = this._resolveWidth($element, 'ToDo.static.style');
 
       if (styleWidth != null) {
         return styleWidth;
@@ -5166,8 +5166,8 @@ S2.define('select2/core',[
       return elementWidth + 'px';
     }
 
-    if (method == 'style') {
-      var style = $element.attr('style');
+    if (method == 'ToDo.static.style') {
+      var style = $element.attr('ToDo.static.style');
 
       if (typeof(style) !== 'string') {
         return null;
