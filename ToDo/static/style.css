@@ -68,6 +68,7 @@ h3{
 .login-form h1{
     text-align: center;
     margin-bottom: 60px;
+    color: #adadad;
 }
 
 .form-group{
@@ -94,6 +95,7 @@ h3{
 .register-form h1 {
     text-align: center;
     margin-bottom: 60px;
+    color: #adadad;
 }
 
 .login-group{
@@ -163,3 +165,51 @@ h3{
     font-size: 13;
 
 }
+
+
+
+.register-group{
+    border-bottom: 2px solid #adadad;
+    position: relative;
+    margin: 30px 0;
+}
+
+.register-group input{
+    font-size: 15px;
+    color: #333;
+    border: none;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 0 5px;
+    height: 40px;
+}
+
+.register-group span::before{
+    content: attr(data-placeholder);
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: .5s;
+}
+
+.register-group span::after{
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(120deg, #7f8fa6, #e1b12c);
+    transition: .5s;
+}
+
+.focus + span::before{
+    top: -5px;
+}
+
+.focus + span::after{
+    width: 100%;
+}
+
