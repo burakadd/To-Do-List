@@ -8,7 +8,7 @@ from ToDo.models import Todo
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        fields = ('text', )
+        fields = ('text', 'complete')
 
 
 class RegisterForm(UserCreationForm):
