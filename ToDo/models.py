@@ -15,3 +15,7 @@ class Todo(models.Model):
 
 class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class MakeComplete(models.Model):
+    complete = models.BooleanField(default=True)

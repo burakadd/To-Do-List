@@ -38,15 +38,24 @@
         <ul class="list-group t20">
         {% for todo in todo_list %}
             {% if todo.complete %}
-            <div name='text' class='task'>
+            <div name='text' class='task_comp'>
             {{ todo.text }}
-            <i class='fas fa-trash-alt'></i>
+            <button type="submit" class="btn btn-primary">
+                <i class='fas fa-trash-alt' onclick="myfunc">
+                </i>
+            </button>
+
             </div>
             {% endif %}
         {% endfor %}
         </ul>
     </div>
 
+    <script type="text/javascript">
+        $("btn btn-primary").click(function(){
+            $("todo").attr("completed","True");
+        });
+        </script>
 
 
     <script type="text/javascript">
