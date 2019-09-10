@@ -11,41 +11,40 @@
 <body>
 
     <form method="post" class="container" autocomplete="off">
-      {% csrf_token %}
-      <div class="login-group">
-        <input name="text" type="text" class="form-control">
-        <span data-placeholder="Add your task"></span>
-      </div>
+        {% csrf_token %}
+        <div class="login-group">
+            <input name="text" type="text" class="form-control">
+            <span data-placeholder="Add your task"></span>
+        </div>
     </form>
 
-
-
-
-    <div class="container">
-        <h3>Not Completed</h3>
-        <ul class="list-group t20">
-        {% for todo in todo_list %}
-            {% if not todo.complete %}
-            <div name='text' class='task'>
-            {{ todo.text }}
-            <i class='fas fa-trash-alt'></i>
-            <i class='fas fa-check'></i>
-            </div>
-            {% endif %}
-        {% endfor %}
-    </ul>
-            <h3>Completed</h3>
-        <ul class="list-group t20">
-        {% for todo in todo_list %}
-            {% if todo.complete %}
-            <div name='text' class='task'>
-            {{ todo.text }}
-            <i class='fas fa-trash-alt'></i>
-            </div>
-            {% endif %}
-        {% endfor %}
-        </ul>
-    </div>
+    {% if todo_list %}
+        <div class="container">
+            <h3>Not Completed</h3>
+            <ul class="list-group t20">
+                    {% for todo in todo_list %}
+                        {% if not todo.complete %}
+                            <div name='text' class='task'>
+                                {{ todo.text }}
+                                <i class='fas fa-trash-alt'></i>
+                                <i class='fas fa-check'></i>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+            </ul>
+                <h3>Completed</h3>
+            <ul class="list-group t20">
+                {% for todo in todo_list %}
+                    {% if todo.complete %}
+                        <div name='text' class='task'>
+                            {{ todo.text }}
+                            <i class='fas fa-trash-alt'></i>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 
 
 

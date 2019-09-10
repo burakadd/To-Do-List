@@ -1,18 +1,12 @@
 from django.contrib.auth.models import User
 
 from django.contrib.auth import authenticate, login
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, FormView
-from rest_framework.viewsets import ModelViewSet
+from django.views.generic import CreateView, FormView, ListView, UpdateView, DeleteView
 
 from .models import Todo
 from .forms import TodoForm, RegisterForm
-from .serializers import UserSerializer
-
-
-class UserViewSet(ModelViewSet):
-    queryset = User.objects.all().order_by('id')
-    serializer_class = UserSerializer
 
 
 class MainView(CreateView):
@@ -43,3 +37,10 @@ class RegisterView(FormView):
 
         login(self.request, user)
         return super().form_valid(form)
+
+
+
+class DeleteToDo(DeleteView): model = Todo
+    template_name = 'ToDo/delete_todo.html'
+    success_url = reverse_lazy('mysite:companies')
+
