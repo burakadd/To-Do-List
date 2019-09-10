@@ -1,9 +1,18 @@
+from django.contrib.auth.models import User
+
 from django.contrib.auth import authenticate, login
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Todo
 from .forms import TodoForm, RegisterForm
+from .serializers import UserSerializer
+
+
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all().order_by('id')
+    serializer_class = UserSerializer
 
 
 class MainView(CreateView):

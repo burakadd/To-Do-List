@@ -8,6 +8,7 @@ from django.db import models
 class Todo(models.Model):
     text = models.CharField(max_length=40)
     complete = models.BooleanField(default=False)
+    # created_by = m
 
     def __str__(self):
         return self.text
@@ -15,3 +16,5 @@ class Todo(models.Model):
 
 class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    city = models.ForeignKey(Todo, on_delete=models.SET_NULL, null=True)
+
